@@ -1,12 +1,11 @@
 # bindglobal
 python-tkinter-bind alike, for global desktop enviroment (callbacks for mouse&amp;keystrokes events)
 
-a full global bind around pynput., that works equal to tkinter bind:
+a full global bind around pynput., that works equal to [tkinter bind](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) / [tk bind](https://www.tcl.tk/man/tcl8.6/TkCmd/bind.htm).
 
-i.e, bind a callback when [ left-clic mouse while 'Menu' Key is pressed ] :
+I.e, bind a callback when [ left-clic mouse while 'Menu' Key is pressed ] :
 
-```python
-import bindglobal
+```python).import bindglobal
 def callback(e):
     print('CALLBACK E:'+str(e) +"  ["+ threading.currentThread().getName() +"]")
     time.sleep(5)
