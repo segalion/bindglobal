@@ -22,17 +22,17 @@ Other examples:
 
 Multiple callbacks, asociated to triple clic over 'f' key, but launch on release:
 
-bg.gbind("<Triple-KeyRelease-f>",callback3)
-bg.gbind("<Triple-KeyRelease-f>",callback4, '+')
+`<bg.gbind("<Triple-KeyRelease-f>",callback3)>` 
+`<bg.gbind("<Triple-KeyRelease-f>",callback4, '+')>`
     
 Other keycodes:
-bg.gbind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))
+`<bg.gbind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))>`
 Drag init (clic mouse, and movement without release)
-bg.gbind("<Motion-Button1>",lambda e: print("DRAG:"+str(e)))
+`<bg.gbind("<Motion-Button1>",lambda e: print("DRAG:"+str(e)))>`
 Win+Alt key when release:
-bg.gbind("<Command-Alt_L-KeyRelease>",lambda e: print("WIN+Alt:"+str(e)))
+`<bg.gbind("<Command-Alt_L-KeyRelease>",lambda e: print("WIN+Alt:"+str(e)))>`
 Press any key:
-bg.gbind("<KeyPress>",callback5)
+`<bg.gbind("<KeyPress>",callback5)>`
 
 Obvously, 'gunbind' method works like tkinter 'unbind'
 
