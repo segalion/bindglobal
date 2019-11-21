@@ -21,9 +21,9 @@ Other examples:
 
 Multiple callbacks, asociated to triple clic over 'f' key, but launch on release:
 
-    bg.gbind("<Triple-KeyRelease-f>",callback3)
-    bg.gbind("<Triple-KeyRelease-f>",callback4, '+')
-
+bg.gbind("<Triple-KeyRelease-f>",callback3)
+bg.gbind("<Triple-KeyRelease-f>",callback4, '+')
+    
 Other keycodes:
 bg.gbind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))
 Drag init (clic mouse, and movement without release)
@@ -36,9 +36,7 @@ bg.gbind("<KeyPress>",callback5)
 Obvously, 'gunbind' method works like tkinter 'unbind'
 
 Moreover, it works fine with threads:
-It run callbacks on
-
-    (new created internal) diferent thread (by default),
+It run callbacks 
+- on (new created internal) diferent thread (by default),
     or
-    in the main tkinter thread (if you pass a tkinter widget when create), so you can safely interact with tkinter inside the callbacks.
-
+- in the main tkinter thread (if you pass a tkinter widget when create), so you can safely interact with tkinter inside the callbacks.
