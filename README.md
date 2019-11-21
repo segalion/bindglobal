@@ -5,6 +5,7 @@ a full global bind around pynput., that works equal to tkinter bind:
 
 i.e, bind a callback when [ left-clic mouse while 'Menu' Key is pressed ] :
 
+```python
 import bindglobal
 def callback(e):
     print('CALLBACK E:'+str(e) +"  ["+ threading.currentThread().getName() +"]")
@@ -14,7 +15,7 @@ def callback(e):
 bg = BindGlobal()
 bg.gbind("<Menu-1>",callback)
 bg.start()
-
+```
 Other examples:
 "<Double-Control_R-c>": double-clic over 'c' key while 'Right-Control' presed
 "<Triple-Shift_R>": Triple clic over 'Right Shift' key
