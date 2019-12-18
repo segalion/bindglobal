@@ -1,6 +1,6 @@
 # bindglobal
 bindglobal is a python-tkinter-bind alike, but run for system-wide global desktop: Windows, Linux (xorg) and MacOS
-enviroments.
+enviroments. It is based on [pynput](https://pynput.readthedocs.io)
 
 You can easily define callbacks for mouse & keystrokes events, or any combination of them.
 
@@ -12,13 +12,22 @@ In addition to bind, bindglobal add:
 
 
 ## How to use
+
+`callback` will be run in a separate thread every time you press [Menu key] + [Button1] mouse (left clic), simultaneously.
+ `exit` will be called when triple-press [Esc] key.
+
     from bindglobal import BindGlobal
 
-    def callback(e): print("running callback1 in another thread. Event=" + str(e)) def exit(e): print('exiting')
+    def callback(e): 
+        print("running callback1 in another thread. Event=" + str(e)) 
+    def exit(e): print('exiting')
         bg.stop()
-    bg = BindGlobal() bg.bind("<Menu-1>",callback) bg.bind("<Triple-Escape>",exit) `callback` will be run in a
-separate thread every time you press [Menu key] + [Button1] mouse (left clic), simultaneously.
- `callback`
+    bg = BindGlobal()
+    bg.bind("<Menu-1>",callback) 
+    bg.bind("<Triple-Escape>",exit) 
+
+
+ 
 
 ## Event
 Bindglobal event (send as parameter to every binded callback) follow the tkinter bind event structure:
