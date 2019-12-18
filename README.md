@@ -58,7 +58,10 @@ Callbacks can run asynchronously from main thread by **two diferent aproach**:
 ### Threaded mode (default)
 All binding callbacks run on a (only-one for all bindings) separate thread. Its your responsability to manage
 thread-safe interations with your main-thread. I.e. you cant call tkinter gui from inside callback. At least 4
-threads will be running: 1. main thread 2. keyboard listener thread 3. mouse listener thread 4. callbacks thread
+threads will be running: 
+1. main thread 
+2. and 3. keyboard listener thread and mouse listener thread 
+4. callbacks thread
 
 ### Tkinter mode
 All binding callbacks will be launched from tkinter main-loop (with tkinter event generation), so callbacks will
@@ -70,43 +73,30 @@ init BindGlobal class:
 
 # Other examples:
 
-I.e, bind a callback when [ left-clic mouse while 'Menu' Key is pressed ] :
-
-```python).import bindglobal
-def callback(e):
-    print('CALLBACK E:'+str(e) +"  ["+ threading.currentThread().getName() +"]")
-    time.sleep(5)
-    print("exiting callback")
-
-bg = BindGlobal()
-bg.gbind("<Menu-1>",callback)
-bg.start()
-```
-Other examples:
 "<Double-Control_R-c>": double-clic over 'c' key while 'Right-Control' presed
 "<Triple-Shift_R>": Triple clic over 'Right Shift' key
 
-Multiple callbacks, asociated to triple clic over 'f' key, but launch on release:
+Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
 
 `bg.gbind("<Triple-KeyRelease-f>",callback3)`
 
-`bg.gbind("<Triple-KeyRelease-f>",callback4, '+')`
+`bg.bind("<Triple-KeyRelease-f>",callback4, '+')`
     
 Other keycodes:
 
-`bg.gbind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))`
+`bg.bind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))`
 
 Drag init (clic mouse, and movement without release)
 
-`bg.gbind("<Motion-Button1>",lambda e: print("DRAG:"+str(e)))`
+`bg.bind("<Motion-Button1>",lambda e: print("DRAG:"+str(e)))`
 
 Win+Alt key when release:
 
-`bg.gbind("<Command-Alt_L-KeyRelease>",lambda e: print("WIN+Alt:"+str(e)))`
+`bg.bind("<Command-Alt_L-KeyRelease>",lambda e: print("WIN+Alt:"+str(e)))`
 
 Press any key:
 
-`bg.gbind("<KeyPress>",callback5)`
+`bg.bind("<KeyPress>",callback5)`
 
 Obvously, 'gunbind' method works like tkinter 'unbind'
 
