@@ -65,7 +65,8 @@ All binding callbacks will be launched from tkinter main-loop (with tkinter even
 be runnig in main-thread (so you can safelly call tkinter gui). To You have to provide a tkinter widget when
 init BindGlobal class:
 
-    root = tkinter.Tk() bg = BindGlobal(widget=root)
+    root = tkinter.Tk() 
+    bg = BindGlobal(widget=root)
 
 # Other examples:
 
