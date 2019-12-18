@@ -1,7 +1,62 @@
 # bindglobal
-python-tkinter-bind alike, for global desktop enviroment (callbacks for mouse&amp;keystrokes events)
+bindglobal is a python-tkinter-bind alike, but run for system-wide global desktop (Windows, Linux(x11) and MacOS
+enviroments): You can easily define callbacks for mouse & keystrokes events, or any combination of them.
 
-a full global bind around pynput., that works equal to [tkinter bind](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) / [tk bind](https://www.tcl.tk/man/tcl8.6/TkCmd/bind.htm).
+Follow instructions in [python tkinter bind](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) or [tk
+bind](https://www.tcl.tk/man/tcl8.6/TkCmd/bind.htm) documentation for definition of keyboard&mouse combinations.
+
+In addition to bind, bindglobal add:
+**<Idle>**:
+
+
+## How to use
+    from bindglobal import BindGlobal
+
+    def callback(e): print("running callback1 in another thread. Event=" + str(e)) def exit(e): print('exiting')
+        bg.stop()
+    bg = BindGlobal() bg.bind("<Menu-1>",callback) bg.bind("<Triple-Escape>",exit) `callback` will be run in a
+separate thread every time you press [Menu key] + [Button1] mouse (left clic), simultaneously.
+ `callback`
+
+## Event
+Bindglobal event (send as parameter to every binded callback) follow the tkinter bind event structure:
+ - **event**:
+ - **widget**: The widget which generated this event. This is a valid Tkinter
+            widget instance, not a name. This attribute is set for all events.
+ - **x**, **y**: The current global mouse position, in pixels.
+ - **char**: The character code (keyboard events only), as a string.
+ - **keysym**: The key symbol (keyboard events only).
+ - keycode: The key code (keyboard events only).
+ - num: The button number (mouse button events only).
+ - type: The event type ('keyboard', 'mouse')
+ - time: datetime of last key/mouse that make fires the bind event
+ - delta: mousewheel points (positve/negative
+ - state: string showing modifiers keys like alt, control, shift, etc.
+            in a 'alt_l+shift_r+' form
+            (note this is not included in tkinter standar event)
+ - **count** (%c): The count field from the event. In <Idle>
+
+Depending on type of Pynput event however, not all attributes may be set.
+
+
+Callbacks **can not** take long time to be executed, so other binding calls will be queued.
+
+## Working modes
+Callbacks can run asynchronously from main thread by **two diferent aproach**:
+
+### Threaded mode (default)
+All binding callbacks run on a (only-one for all bindings) separate thread. Its your responsability to manage
+thread-safe interations with your main-thread. I.e. you cant call tkinter gui from inside callback. At least 4
+threads will be running: 1. main thread 2. keyboard listener thread 3. mouse listener thread 4. callbacks thread
+
+### Tkinter mode
+All binding callbacks will be launched from tkinter main-loop (with tkinter event generation), so callbacks will
+be runnig in main-thread (so you can safelly call tkinter gui). To You have to provide a tkinter widget when
+init BindGlobal class:
+
+    root = tkinter.Tk() bg = BindGlobal(widget=root)
+
+# Other examples:
 
 I.e, bind a callback when [ left-clic mouse while 'Menu' Key is pressed ] :
 
