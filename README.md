@@ -77,12 +77,12 @@ init BindGlobal class:
 `bg.gbind("<Idle>",callback_when_idle,300)`
 
 `callback_when_idle` will be called when:
-- Every timeout=300 seconds with no keyboard or mouseaction. Event will contain:
-  - .event = '<Idle>'
-  - .count = 1,2,....n
+- Every timeout=300 seconds with no keyboard or mouse action. Event will contain:
+  - `.event = '<Idle>'`
+  - `.count = 1,2,....n` (for every timeout)
 - Exit from idle mode (any keyboard or mouse event):
-  - .event = '<after_idle>' 
-  - .count = 1
+  - `.event = '<after_idle>'`
+  - `.count = 1`
  
 # Other examples:
 
