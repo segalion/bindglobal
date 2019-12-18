@@ -8,8 +8,9 @@ Follow instructions in [python tkinter bind](https://effbot.org/tkinterbook/tkin
 bind](https://www.tcl.tk/man/tcl8.6/TkCmd/bind.htm) documentation for definition of keyboard&mouse combinations.
 
 In addition to bind, bindglobal add:
-**<Idle>**:
 
+**<Idle>**
+**<Long>**
 
 ## How to use
 
@@ -71,6 +72,18 @@ init BindGlobal class:
     root = tkinter.Tk() 
     bg = BindGlobal(widget=root)
 
+## Idle
+
+`bg.gbind("<Idle>",callback_when_idle,300)`
+
+`callback_when_idle` will be called when:
+- Every timeout with no key or mouse event, with:
+-- event.event = '<Idle>'
+-- event.count = 1,2,....n
+- Exit from idle mode (any keyboard or mouse event):
+-- event.event = '<after_idle>'
+-- event.count = 1
+ 
 # Other examples:
 
 "<Double-Control_R-c>": double-clic over 'c' key while 'Right-Control' presed
@@ -78,7 +91,7 @@ init BindGlobal class:
 
 Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
 
-`bg.gbind("<Triple-KeyRelease-f>",callback3)`
+`bg.bind("<Triple-KeyRelease-f>",callback3)`
 
 `bg.bind("<Triple-KeyRelease-f>",callback4, '+')`
     
