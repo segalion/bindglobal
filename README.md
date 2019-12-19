@@ -12,8 +12,8 @@ In addition to bind, bindglobal add:
 `'<Idle>'`
     to discover user inactivity based on no keyboard and mouse events
     
-`'<Long>'`
-    to get Long-press (i.e. mouse buttons) (not yet avaliable) 
+`'<Long->'`
+    to get Long pressing of keys and buttons (not yet avaliable) 
 
 ## How to use
 
