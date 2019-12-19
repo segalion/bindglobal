@@ -31,25 +31,6 @@ In addition to bind, bindglobal add:
     bg.bind("<Triple-Escape>",exit) 
  
 
-## Event
-Bindglobal event (sended as parameter to every binded callback) follow the tkinter bind event structure:
- - **event**: The combination key-mouse that fire the callback, as created in bind method. '<Idle>' or '<After_Idle>'  
- - **widget**: The tkinter widget in tkinter mode or None in threaded mode
- - **x**, **y**: The current global mouse position, in pixels.
- - **char**: The character code (keyboard events only), as a string.
- - **keysym**: The key symbol (keyboard events only). Not implemented
- - **keycode**: The key code (keyboard events only).
- - **num**: The button number (mouse button events only).
- - **type**: The event type ('keyboard', 'mouse') that make fire the event.
- - **time**: datetime of last key/mouse that make fires the bind event
- - **delta**: mousewheel points (positve/negative
- - **state**: string showing modifiers keys like alt, control, shift, etc.
-            in a 'alt_l+shift_r+' form
-            (note this is not included in tkinter standard event)
- - **count** (%c): The count field from the event. In <Idle> event: times the timeout has expired. In key events: the times key-pressed without key-released (repeated keys). In mouse clic-relese events, the total time in milliseconds of pressed button.   
-
-Depending on type of Pynput event however, not all attributes may be set.
-
 ## Inportant notes:
 
 Callbacks **can not** take long time to be executed, so other binding calls will be queued.
@@ -67,20 +48,19 @@ threads will be running:
 
 ### Tkinter mode
 All binding callbacks will be launched from tkinter main-loop (with tkinter event generation), so callbacks will
-be runnig in main-thread (so you can safelly call tkinter gui). To You have to provide a tkinter widget when
+be runnig in main-thread (so you can safelly call tkinter gui from inside callback). You have to provide a tkinter widget when
 init BindGlobal class:
 
     root = tkinter.Tk() 
     bg = BindGlobal(widget=root)
-
 
 ## Methods:
 
 ### bind / unbind
 
 `bg.bind(combination,callback,param)`
-combination (or event): If None, return all list of actual bindings
-callback: if None, return actual bindings for this combination
+combination (or event): Combiantion string definition as standar tkinter bind command. If None, return all list of actual bindings
+callback: your callback funtion, that will be called everytime combination is detected. Must be defined to receive the event paratemter. if None, return actual bindings for this combination
 param: can be '+' to add new callbacks to same combination, or timeout seconds in '<Idle>' event.
 
 `unbind` works as expected tkinter unbind, removing bind callback
@@ -90,7 +70,6 @@ param: can be '+' to add new callbacks to same combination, or timeout seconds i
 `'<Triple-Shift_R>'`: Triple clic over 'Right Shift' key
 
 `'<Double-Control_R-c>'`: fired when double-clic over 'c' key, while 'Right-Control' presed
-
 
 
 #### Special Idle event
@@ -121,7 +100,27 @@ In example:
 
 ### type
 `bg.keyboard.type("write this string")`
- 
+
+## Event
+Bindglobal event (sended as parameter to every binded callback) follow the tkinter bind event structure:
+ - **event**: The combination key-mouse that fire the callback, as created in bind method. '<Idle>' or '<After_Idle>'  
+ - **widget**: The tkinter widget in tkinter mode or None in threaded mode
+ - **x**, **y**: The current global mouse position, in pixels.
+ - **char**: The character code (keyboard events only), as a string.
+ - **keysym**: The key symbol (keyboard events only). Not implemented
+ - **keycode**: The key code (keyboard events only).
+ - **num**: The button number (mouse button events only).
+ - **type**: The event type ('keyboard', 'mouse') that make fire the event.
+ - **time**: datetime of last key/mouse that make fires the bind event
+ - **delta**: mousewheel points (positve/negative
+ - **state**: string showing modifiers keys like alt, control, shift, etc.
+            in a 'alt_l+shift_r+' form
+            (note this is not included in tkinter standard event)
+ - **count** (%c): The count field from the event. In <Idle> event: times the timeout has expired. In key events: the times key-pressed without key-released (repeated keys). In mouse clic-relese events, the total time in milliseconds of pressed button.   
+
+Depending on type of Pynput event however, not all attributes may be set.
+
+
 # Other examples:
 
 Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
