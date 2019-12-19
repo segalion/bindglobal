@@ -14,8 +14,12 @@ In addition to bind, bindglobal add:
 
 ## How to use
 
-`callback` will be run in a separate thread every time you press [Menu key] + [Button1] mouse (left clic), simultaneously.
- `exit` will be called when triple-press [Esc] key.
+### Install
+with 
+`pip install bindglobal`
+
+### Code
+The minimum example, `import`, define `callback` functions, create a `BindGlobal` object, and `bind` combinations to callbaks.
 
     from bindglobal import BindGlobal
 
@@ -30,6 +34,8 @@ In addition to bind, bindglobal add:
     bg.bind("<Menu-1>",callback) 
     bg.bind("<Triple-Escape>",exit) 
  
+`callback` will be run in a separate thread every time you press [Menu key] + [Button1] mouse (left clic), simultaneously.
+ `exit` will be called when triple-press [Esc] key.
 
 ## Inportant notes:
 
@@ -53,6 +59,8 @@ To enable this mode you have to provide a tkinter widget when init BindGlobal cl
 
     root = tkinter.Tk() 
     bg = BindGlobal(widget=root)
+
+Please, note than more than one BindGlobal object can be created (every object with their own separate threads and bindings).
 
 ## Methods:
 
