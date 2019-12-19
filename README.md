@@ -1,5 +1,5 @@
 # bindglobal
-bindglobal is a python-tkinter-bind alike, but run for system-wide global desktop: Windows, Linux (xorg) and MacOS
+bindglobal is a python-tkinter-bind alike, but run for system-wide global desktop: Windows, Linux (Xorg) and MacOS
 enviroments. It is based on [pynput](https://pynput.readthedocs.io)
 
 You can easily define callbacks for mouse & keystrokes events, or any combination of them.
