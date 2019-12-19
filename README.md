@@ -39,17 +39,17 @@ Callbacks **can not** take long time to be executed, so other binding calls will
 Callbacks can run asynchronously from main thread by **two diferent aproach**:
 
 ### Threaded mode (default)
-All binding callbacks run on a (only-one for all bindings) separate thread. Its your responsability to manage
-thread-safe interations with your main-thread. I.e. you cant call tkinter gui from inside callback. At least 4
-threads will be running: 
-1. main thread 
-2. and 3. keyboard listener thread and mouse listener thread 
-4. callbacks thread
+All binding callbacks run on a (only-one for all bindings) separate thread. **Note that its your responsability to manage
+thread-safe interations with your main-thread** (I.e. you cant call tkinter gui from inside callback). 
+At least 4 threads will be running: 
+1. main-thread 
+2. and 3. keyboard-listener-thread and mouse-listener-thread (from pynput)
+4. callbacks-thread
 
 ### Tkinter mode
 All binding callbacks will be launched from tkinter main-loop (with tkinter event generation), so callbacks will
-be runnig in main-thread (so you can safelly call tkinter gui from inside callback). You have to provide a tkinter widget when
-init BindGlobal class:
+be runnig in main-thread (**you can safely call tkinter gui from inside callback**). 
+To enable this mode you have to provide a tkinter widget when init BindGlobal class:
 
     root = tkinter.Tk() 
     bg = BindGlobal(widget=root)
@@ -121,32 +121,21 @@ Bindglobal event (sended as parameter to every binded callback) follow the tkint
 Depending on type of Pynput event however, not all attributes may be set.
 
 
-# Other examples:
+## Other examples:
 
+### Multiple callbacks
 Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
-
-`bg.bind("<Triple-KeyRelease-f>",callback3)`
-
-`bg.bind("<Triple-KeyRelease-f>",callback4, '+')`
+`bg.bind("<Triple-KeyRelease-f>",callback1)`
+`bg.bind("<Triple-KeyRelease-f>",callback2, '+')`
     
-Other keycodes:
-
+### Other keycodes
 `bg.bind("<65027>",lambda e: print("ALT-GR in LINUX"+str(e)))`
 
-Drag init (clic mouse, and movement without release)
-
+### Drag init (clic mouse, and movement without release)
 `bg.bind("<Motion-Button1>",lambda e: print("DRAG:"+str(e)))`
 
-Win+Alt key when release:
-
+### Win+Alt key when release
 `bg.bind("<Command-Alt_L-KeyRelease>",lambda e: print("WIN+Alt:"+str(e)))`
 
-Press any key:
-
+### Press any key
 `bg.bind("<KeyPress>",callback5)`
-
-Moreover, it works fine with threads:
-It run callbacks 
-- on (new created internal) diferent thread (by default),
-    or
-- in the main tkinter thread (if you pass a tkinter widget when create), so you can safely interact with tkinter inside the callbacks.
