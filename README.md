@@ -76,15 +76,16 @@ init BindGlobal class:
 
 ## Methods:
 
-### bind
+### bind / unbind
 
 `bg.bind(combination,callback,param)`
-combination (or event):
-callback:
-param: can be '+' to add new callbacks to same combination, or timeout seconds in '<Idle>' event
+combination (or event): If None, return all list of actual bindings
+callback: if None, return actual bindings for this combination
+param: can be '+' to add new callbacks to same combination, or timeout seconds in '<Idle>' event.
 
+`unbind` works as expected tkinter unbind, removing bind callback
 
-### Special Idle event
+#### Special Idle event
 
 `bg.bind('<Idle>',callback_when_idle,300)`
 
@@ -96,12 +97,22 @@ param: can be '+' to add new callbacks to same combination, or timeout seconds i
   - `.event = '<after_idle>'`
   - `.count = 1`
 
-### unbind
-
-Works as expected tkinter unbind 
 
 ### start, stop and pause
 
+### keyboard
+
+`bg.keyboard` let access to internal pynput keyboard controller.
+In example:
+`bg.keyboard.type("write this string")`
+
+
+### mouse
+
+`bg.mouse` let access to internal pynput mouse controller.
+
+### type
+`bg.keyboard.type("write this string")`
  
 # Other examples:
 
