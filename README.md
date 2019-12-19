@@ -84,9 +84,9 @@ callback:
 param: can be '+' to add new callbacks to same combination, or timeout seconds in '<Idle>' event
 
 
-### special <Idle>
+### Special Idle event
 
-`bg.bind("<Idle>",callback_when_idle,300)`
+`bg.bind('<Idle>',callback_when_idle,300)`
 
 `callback_when_idle` will be called when:
 - Every timeout=300 seconds with no keyboard or mouse action. Event will contain:
@@ -97,6 +97,10 @@ param: can be '+' to add new callbacks to same combination, or timeout seconds i
   - `.count = 1`
 
 ### unbind
+
+Works as expected tkinter unbind 
+
+### start, stop and pause
 
  
 # Other examples:
