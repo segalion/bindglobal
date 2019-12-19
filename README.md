@@ -124,7 +124,8 @@ Depending on type of Pynput event however, not all attributes may be set.
 ## Other examples:
 
 ### Multiple callbacks
-Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
+asociated to triple clic over 'f' key, (but launching on release):
+
 `bg.bind("<Triple-KeyRelease-f>",callback1)`
 `bg.bind("<Triple-KeyRelease-f>",callback2, '+')`
     
