@@ -85,6 +85,14 @@ param: can be '+' to add new callbacks to same combination, or timeout seconds i
 
 `unbind` works as expected tkinter unbind, removing bind callback
 
+#### Examples of combinations:
+
+`'<Triple-Shift_R>'`: Triple clic over 'Right Shift' key
+
+`'<Double-Control_R-c>'`: fired when double-clic over 'c' key, while 'Right-Control' presed
+
+
+
 #### Special Idle event
 
 `bg.bind('<Idle>',callback_when_idle,300)`
@@ -115,9 +123,6 @@ In example:
 `bg.keyboard.type("write this string")`
  
 # Other examples:
-
-"<Double-Control_R-c>": double-clic over 'c' key while 'Right-Control' presed
-"<Triple-Shift_R>": Triple clic over 'Right Shift' key
 
 Multiple callbacks, asociated to triple clic over 'f' key, (but launching on release):
 
