@@ -19,17 +19,20 @@ In addition to bind, bindglobal add:
 
     from bindglobal import BindGlobal
 
-    def callback(e): 
-        print("running callback1 in another thread. Event=" + str(e)) 
-    def exit(e): print('exiting')
+    def callback(event): 
+        print("running callback in another thread. Event=" + str(event)) 
+    
+    def exit(event): 
+        print('exiting')
         bg.stop()
+    
     bg = BindGlobal()
     bg.bind("<Menu-1>",callback) 
     bg.bind("<Triple-Escape>",exit) 
  
 
 ## Event
-Bindglobal event (send as parameter to every binded callback) follow the tkinter bind event structure:
+Bindglobal event (sended as parameter to every binded callback) follow the tkinter bind event structure:
  - **event**: The combination key-mouse that fire the callback, as created in bind method. '<Idle>' or '<After_Idle>'  
  - **widget**: The tkinter widget in tkinter mode or None in threaded mode
  - **x**, **y**: The current global mouse position, in pixels.
