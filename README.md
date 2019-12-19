@@ -9,9 +9,9 @@ bind](https://www.tcl.tk/man/tcl8.6/TkCmd/bind.htm) documentation for definition
 
 In addition to bind, bindglobal add:
 
-##### '<Idle>'
+`'<Idle>'`
     to discover user inactivity based on no keyboard and mouse events
-##### '<Long>'
+`'<Long>'`
     to get Long-press (i.e. mouse buttons) (not yet avaliable) 
 
 ## How to use
