@@ -44,7 +44,7 @@ The minimum example, `import`, define `callback` functions, create a `BindGlobal
 
  - Callbacks **can not** take long time to be executed, so other binding calls will be queued.
 
- - **Keyrelease** modifier apply to all keys con combination definition. I.e. <'Control-KeyRelease-z'> will fire when released all [Control]-key and [z]-key (after they has been simultaneously pressed)
+ - **Keyrelease** modifier apply to all keys in combination definition. I.e. <'Control-KeyRelease-z'> will fire when all ([Control]-key and [z]-key) are released (after they has been simultaneously pressed)
 
 ## Working modes
 Callbacks can run asynchronously from main thread by **two diferent aproach**:
